@@ -1,7 +1,12 @@
 (function () {
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
-          <style></style>
+          <style>
+          :host {
+                display: block;
+                padding: 1em 1em 1em 1em;
+          }
+          </style>
           <div id = "sacchatgpt"></div>
         `;
 
@@ -20,7 +25,7 @@
     //properties
     onCustomWidgetBeforeUpdate(oChangedProperties) {}
     onCustomWidgetAfterUpdate(oChangedProperties) {
-      if ("designMode" in changedProperties) {
+      if ("designMode" in oChangedProperties) {
         return;
       }
       this.analyze();
@@ -94,7 +99,7 @@
         contentType: "application/json",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + this.token,
+          "Authorization": "Bearer " + this.token,
         },
         url: "https://api.openai.com/v1/chat/completions",
         dataType: "json",
