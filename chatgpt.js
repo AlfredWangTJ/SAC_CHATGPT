@@ -37,11 +37,13 @@
     //properties
     onCustomWidgetBeforeUpdate(oChangedProperties) {
         this._props = { ...this._props, ...oChangedProperties };
+      console.log(this);
     }
     onCustomWidgetAfterUpdate(oChangedProperties) {
       if (this._props.designMode == false) {
 
       }
+      console.log(this);
     }
 
     //methods
@@ -157,6 +159,7 @@
       return this.dataBindings.getDataBinding("customDataBinding").getDataSource();
     }
     setModel(modelId) {
+      console.log(this);
       return this.dataBindings.getDataBinding("customDataBinding").setModel(modelId);
     }
     openSelectModelDialog() {
