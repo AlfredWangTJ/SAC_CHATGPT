@@ -1,0 +1,142 @@
+{
+  "name": "Chat GPT Widget",
+  "description": "A chat gpt custom widget to analyze data",
+  "eula": "",
+  "vendor": "Alfred Wang @ SAP",
+  "license": "",
+  "id": "com.sap.alfred.chatgpt.0",
+  "newInstancePrefix": "Chatgpt",
+  "version": "0.0.1",
+  "icon": "https://alfredwangtj.github.io/SAC_CHATGPT/gpticon.png",
+  "webcomponents": [
+    {
+      "kind": "main",
+      "tag": "com-sap-alfred-chatgpt",
+      "url": "https://alfredwangtj.github.io/SAC_CHATGPT/chatgpt.js",
+      "integrity": "",
+      "ignoreIntegrity": true
+    }
+  ],
+  "properties": {
+    "token": {
+      "type": "string",
+      "description": "OpenAI token to consume the APIs",
+      "default": ""
+    },
+    "prompt": {
+      "type": "string",
+      "description": "Default prompt question",
+      "default": "请从多个角度详细分析以下数据"
+    }
+  },
+  "dataBindings": {
+    "customDataBinding": {
+      "feeds": [
+        {
+          "id": "dimensions",
+          "description": "Dimensions",
+          "type": "dimension"
+        },
+        {
+          "id": "measures",
+          "description": "Measures",
+          "type": "mainStructureMember"
+        }
+      ]
+    }
+  },
+  "methods": {
+    "getPrompt": {
+      "returnType": "string",
+      "description": "Get prompt question",
+      "parameters": []
+    },
+    "setPrompt": {
+      "description": "Set prompt question",
+      "parameters": [
+        {
+          "name": "newPrompt",
+          "type": "string",
+          "description": "prompt question"
+        }
+      ]
+    },
+    "getDataSource": {
+      "description": "Get datasource of the widget",
+      "parameters": [],
+      "returnType": "Type.DataSource"
+    },
+    "setModel": {
+      "description": "Set model of the widget",
+      "parameters": [
+        {
+          "name": "modelId",
+          "type": "string",
+          "description": "Model ID"
+        }
+      ]
+    },
+    "openSelectModelDialog": {
+      "description": "Open model selector dialog",
+      "parameters": []
+    },
+    "addDimension": {
+      "description": "Add dimension to DataBinding",
+      "parameters": [
+        {
+          "name": "dimensionId",
+          "type": "string",
+          "description": "Dimension ID"
+        }
+      ]
+    },
+    "addMeasure": {
+      "description": "Add measure to DataBinding",
+      "parameters": [
+        {
+          "name": "measureId",
+          "type": "string",
+          "description": "Measure ID"
+        }
+      ]
+    },
+    "removeDimension": {
+      "description": "Remove dimension from DataBinding",
+      "parameters": [
+        {
+          "name": "dimensionId",
+          "type": "string",
+          "description": "Dimension ID"
+        }
+      ]
+    },
+    "removeMeasure": {
+      "description": "Remove measure from DataBinding",
+      "parameters": [
+        {
+          "name": "measureId",
+          "type": "string",
+          "description": "Measure ID"
+        }
+      ]
+    },
+    "getDimensions": {
+      "description": "Get current dimension list of DataBinding",
+      "parameters": [],
+      "returnType": "string[]"
+    },
+    "getMeasures": {
+      "description": "Get current measure list of DataBinding",
+      "parameters": [],
+      "returnType": "string[]"
+    },
+    "analyze": {
+      "description": "Send prompt and data to GPT for analyze.",
+      "parameters": [],
+      "returnType": "string"
+    }
+  },
+  "events": {
+
+  }
+}
