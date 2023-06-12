@@ -31,7 +31,7 @@
     }
     onCustomWidgetAfterUpdate(oChangedProperties) {
       if (this._props.designMode == false) {
-        this.analyze();
+
       }
     }
 
