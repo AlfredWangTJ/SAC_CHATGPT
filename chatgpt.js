@@ -23,30 +23,11 @@
       });
       this._renderAnalyzeButton();
       this._props = {};
-
-      //Custom Data
-//       this.setModel("Cnd84a1tvj5fm3onlqvmnph675v");
-//       this.addDimension("ZDATE");
-//       this.addDimension("ZENN_ESG_ACCOUNT");
-//       this.addDimension("ZENN_ESG_ENTITY");
-//       this.addDimension("ZCUSTOM1");
-//       this.addMeasure("M_VALUE");
-
     }
 
     //properties
-    onCustomWidgetBeforeUpdate(oChangedProperties) {
-        this._props = { ...this._props, ...oChangedProperties };
-      console.log("before");
-      console.log(this);
-    }
-    onCustomWidgetAfterUpdate(oChangedProperties) {
-      if (this._props.designMode == false) {
-
-      }
-      console.log("after");
-      console.log(this);
-    }
+    onCustomWidgetBeforeUpdate(oChangedProperties) {}
+    onCustomWidgetAfterUpdate(oChangedProperties) {}
 
     //methods
     getPrompt() {
@@ -158,37 +139,31 @@
 
     //Datasource and DataBinding
     getDataSource() {
-      return this.dataBindings.getDataBinding("customDataBinding").getDataSource();
+      return this.customDataBinding.getDataSource();
     }
     setModel(modelId) {
-      console.log("set");
-      console.log(this);
-      return this.dataBindings.getDataBinding("customDataBinding").setModel(modelId);
+      return this.customDataBinding.setModel(modelId);
     }
     openSelectModelDialog() {
-      return this.dataBindings.getDataBinding("customDataBinding").openSelectModelDialog();
+      return this.customDataBinding.openSelectModelDialog();
     }
     getDimensions() {
-      return this.dataBindings.getDataBinding("customDataBinding").getDimensions("dimensions");
+      return this.customDataBinding.getDimensions("dimensions");
     }
     addDimension(dimensionId) {
-      return this.dataBindings
-        .getDataBinding("customDataBinding")
-        .addDimensionToFeed("dimensions", dimensionId);
+      return this.customDataBinding.addDimensionToFeed("dimensions", dimensionId);
     }
     removeDimension(dimensionId) {
-      return this.dataBindings.getDataBinding("customDataBinding").removeDimension(dimensionId);
+      return this.customDataBinding.removeDimension(dimensionId);
     }
     getMeasures() {
-      return this.dataBindings.getDataBinding("customDataBinding").getMembers("measures");
+      return this.customDataBinding.getMembers("measures");
     }
     addMeasure(measureId) {
-      return this.dataBindings
-        .getDataBinding("customDataBinding")
-        .addMemberToFeed("measures", measureId);
+      return this.customDataBinding.addMemberToFeed("measures", measureId);
     }
     removeMeasure(measureId) {
-      return this.dataBindings.getDataBinding("customDataBinding").removeMember(measureId);
+      return this.customDataBinding.removeMember(measureId);
     }
 
     //getter and setter
