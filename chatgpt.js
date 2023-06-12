@@ -20,6 +20,9 @@
     //properties
     onCustomWidgetBeforeUpdate(oChangedProperties) {}
     onCustomWidgetAfterUpdate(oChangedProperties) {
+      if ("designMode" in changedProperties) {
+        return;
+      }
       this.analyze();
     }
 
