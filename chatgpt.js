@@ -25,24 +25,26 @@
       this._props = {};
 
       //Custom Data
-      this.setModel("Cnd84a1tvj5fm3onlqvmnph675v");
-      this.addDimension("ZDATE");
-      this.addDimension("ZENN_ESG_ACCOUNT");
-      this.addDimension("ZENN_ESG_ENTITY");
-      this.addDimension("ZCUSTOM1");
-      this.addMeasure("M_VALUE");
+//       this.setModel("Cnd84a1tvj5fm3onlqvmnph675v");
+//       this.addDimension("ZDATE");
+//       this.addDimension("ZENN_ESG_ACCOUNT");
+//       this.addDimension("ZENN_ESG_ENTITY");
+//       this.addDimension("ZCUSTOM1");
+//       this.addMeasure("M_VALUE");
 
     }
 
     //properties
     onCustomWidgetBeforeUpdate(oChangedProperties) {
         this._props = { ...this._props, ...oChangedProperties };
+      console.log("before");
       console.log(this);
     }
     onCustomWidgetAfterUpdate(oChangedProperties) {
       if (this._props.designMode == false) {
 
       }
+      console.log("after");
       console.log(this);
     }
 
@@ -159,6 +161,7 @@
       return this.dataBindings.getDataBinding("customDataBinding").getDataSource();
     }
     setModel(modelId) {
+      console.log("set");
       console.log(this);
       return this.dataBindings.getDataBinding("customDataBinding").setModel(modelId);
     }
