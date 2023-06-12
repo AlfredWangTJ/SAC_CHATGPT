@@ -2,12 +2,14 @@
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
           <style>
-          :host {
-                display: block;
-                padding: 1em 1em 1em 1em;
-          }
+          div{
+                border: 1px solid #000000
+            }
           </style>
-          <div id = "sacchatgpt"></div>
+          <div id = "sacchatgptmain">
+            <slot name="analyze_button"></slot>
+            <p id = "sacchatgpt"></p>
+          </div>
         `;
 
   class SacChatGpt extends HTMLElement {
@@ -19,16 +21,18 @@
         this.shadowRoot.getElementById("sacchatgpt").textContent =
           event.detail.properties.gptResp;
       });
+      this._renderAnalyzeButton();
       this._props = {};
     }
 
     //properties
-    onCustomWidgetBeforeUpdate(oChangedProperties) {}
+    onCustomWidgetBeforeUpdate(oChangedProperties) {
+        this._props = { ...this._props, ...oChangedProperties };
+    }
     onCustomWidgetAfterUpdate(oChangedProperties) {
-      if ("designMode" in oChangedProperties) {
-        return;
+      if (this._props.designMode == false) {
+        this.analyze();
       }
-      this.analyze();
     }
 
     //methods
@@ -37,6 +41,19 @@
     }
     setPrompt(newPrompt) {
       this.prompt = newPrompt;
+    }
+    _renderAnalyzeButton() {
+        let buttonSlot = document.createElement("div");
+        buttonSlot.slot = "analyze_button";
+        this.appendChild(buttonSlot);
+
+        this._analyzeButton = new sap.m.Button({
+            text: "分析数据",
+            press: () => {
+                this.analyze();
+            }
+        });
+        this._analyzeButton.placeAt(buttonSlot);
     }
     prepareData() {
       let datasource = this.getDataSource();
