@@ -26,8 +26,8 @@
     }
 
     //properties
-    onCustomWidgetBeforeUpdate(oChangedProperties) {}
-    onCustomWidgetAfterUpdate(oChangedProperties) {}
+    onCustomWidgetBeforeUpdate(oChangedProperties) {debugger;}
+    onCustomWidgetAfterUpdate(oChangedProperties) {debugger;}
 
     //methods
     getPrompt() {
