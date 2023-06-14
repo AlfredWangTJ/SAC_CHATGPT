@@ -105,6 +105,7 @@
       this.prompt = prompt;
     }
     analyze() {
+      debugger;
       this.prepareData();
       this.preparePrompt();
 
