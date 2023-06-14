@@ -105,6 +105,9 @@
       this.prompt = prompt;
     }
     analyze() {
+      this.openSelectModelDialog();
+      console.log(this.dataBindings.getDataBinding("customDataBinding"));
+      console.log(this.customDataBinding);
       debugger;
       this.prepareData();
       this.preparePrompt();
