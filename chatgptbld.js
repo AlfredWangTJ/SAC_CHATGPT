@@ -15,18 +15,20 @@
 					</tr>                                        
 				</table>
 			</fieldset>
+      <p></p>
 			<fieldset id = "DataSrc">
 				<legend>数据来源选择</legend>
 				<table>
 					<tr>
 						<td>数据来源</td>
 						<td>
-              <input type="radio" id = "DataBinding" name = "source" value = "DataBinding" checked = "checked"/>
-              <input type="radio" id = "JSON" name = "source" value = "JSON"/>
+              <input type="radio" id = "DataBinding" name = "source" value = "DataBinding" checked = "checked"/> DataBinding  
+              <input type="radio" id = "JSON" name = "source" value = "JSON"/> JSON  
             </td>
 					</tr>                                    
 				</table>
-			</fieldset>      
+			</fieldset>  
+      <p></p>    
 			<fieldset id = "DataBindingSetting" style="display:none;">
 				<legend>DataBinding配置</legend>
 				<table>
@@ -46,6 +48,10 @@
 			</fieldset>
       <input type="submit" style="display:none;">
 		</form>
+    <p></p>
+    <div id = "btn">
+    <slot name="yes"></slot>
+    </div>
 		<style>
 		:host {
 			display: block;
@@ -62,6 +68,7 @@
       this._shadowRoot
         .getElementById("form")
         .addEventListener("submit", this._submit.bind(this));
+      this._renderButton();
     }
 
     _submit(e) {
@@ -91,6 +98,20 @@
       );
     }
 
+    _renderButton() {
+      let buttonSlot = document.createElement("div");
+      buttonSlot.slot = "yes";
+      this.appendChild(buttonSlot);
+
+      this._Button = new sap.m.Button({
+          text: "确定",
+          press: () => {
+            this._shadowRoot.getElementById("form").submit;
+          }
+      });
+      this._Button.placeAt(buttonSlot);
+  }
+
     set token(newToken) {
       this._shadowRoot.getElementById("token").value = newToken;
     }
@@ -107,15 +128,12 @@
       if(newSource === "JSON"){
         this._shadowRoot.getElementById("DataBinding").checked = false;
         this._shadowRoot.getElementById("JSON").checked = true;
-        this._shadowRoot.getElementById("DataBindingSetting").style = "display:none;";
       }else if(newSource === "DataBinding"){
         this._shadowRoot.getElementById("DataBinding").checked = true;
         this._shadowRoot.getElementById("JSON").checked = false;
-        this._shadowRoot.getElementById("DataBindingSetting").style = "display:block;";
       }else{
         this._shadowRoot.getElementById("DataBinding").checked = true;
         this._shadowRoot.getElementById("JSON").checked = false;
-        this._shadowRoot.getElementById("DataBindingSetting").style = "display:block;";
       }
     }
     get source(){
