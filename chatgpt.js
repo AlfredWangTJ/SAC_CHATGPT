@@ -34,7 +34,7 @@
 
       //Auto call setter & getter function from Bulider/Styling Panel
     onCustomWidgetAfterUpdate(oChangedProperties) {
-      //debugger;
+      debugger;
     }
 
     //methods

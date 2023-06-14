@@ -106,7 +106,7 @@
       this._Button = new sap.m.Button({
           text: "确定",
           press: () => {
-            this._shadowRoot.getElementById("form").submit;
+            this._submit();
           }
       });
       this._Button.placeAt(buttonSlot);
