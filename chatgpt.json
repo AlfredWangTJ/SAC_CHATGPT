@@ -15,9 +15,24 @@
       "url": "https://alfredwangtj.github.io/SAC_CHATGPT/chatgpt.js",
       "integrity": "",
       "ignoreIntegrity": true
-    }
+    },
+    {
+        "kind": "builder",
+        "tag": "com-sap-alfred-chatgpt-builder",
+        "url": "https://alfredwangtj.github.io/SAC_CHATGPT/chatgptbld.js",
+        "integrity": "",
+        "ignoreIntegrity": true
+      }
   ],
   "properties": {
+		"width": { 
+			"type": "integer",
+			"default": 200
+		},
+		"height": {  
+			"type": "integer",
+			"default": 100
+		},
     "token": {
       "type": "string",
       "description": "OpenAI token to consume the APIs",
@@ -27,6 +42,26 @@
       "type": "string",
       "description": "Default prompt question",
       "default": "请从多个角度详细分析以下数据"
+    },
+    "source":{
+      "type": "string",
+      "description": "Source of data: DataBinding or JSON",
+      "default": "DataBinding"      
+    },
+    "modelId":{
+      "type": "string",
+      "description": "DataBinding Model TECH ID",
+      "default": ""        
+    },
+    "dimensionList":{
+      "type": "string",
+      "description": "Dimension List of DataBinding Model",
+      "default": ""           
+    },
+    "measureList":{
+      "type": "string",
+      "description": "Measure List of DataBinding Model",
+      "default": ""           
     }
   },
   "dataBindings": {
@@ -60,11 +95,6 @@
           "description": "prompt question"
         }
       ]
-    },
-    "getDataSource": {
-      "description": "Get datasource of the widget",
-      "parameters": [],
-      "returnType": "Type.DataSource"
     },
     "setModel": {
       "description": "Set model of the widget",

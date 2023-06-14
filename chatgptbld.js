@@ -2,7 +2,7 @@
   let template = document.createElement("template");
   template.innerHTML = `
 		<form id="form">
-			<fieldset>
+			<fieldset id = "OpenAI">
 				<legend>OpenAI API配置</legend>
 				<table>
 					<tr>
@@ -14,8 +14,37 @@
 						<td><input id="prompt" type="text"></td>
 					</tr>                                        
 				</table>
-				<input type="submit" style="display:none;">
 			</fieldset>
+			<fieldset id = "DataSrc">
+				<legend>数据来源选择</legend>
+				<table>
+					<tr>
+						<td>数据来源</td>
+						<td>
+              <input type="radio" id = "DataBinding" name = "source" value = "DataBinding" checked = "checked"/>
+              <input type="radio" id = "JSON" name = "source" value = "JSON"/>
+            </td>
+					</tr>                                    
+				</table>
+			</fieldset>      
+			<fieldset id = "DataBindingSetting" style="display:none;">
+				<legend>DataBinding配置</legend>
+				<table>
+					<tr>
+						<td>Model TechID</td>
+						<td><input id="modelId" type="text"></td>
+					</tr>
+					<tr>
+						<td>Dimension List</td>
+						<td><input id="dimensionList" type="text"></td>
+					</tr>  
+					<tr>
+						<td>Measure List</td>
+						<td><input id="measureList" type="text"></td>
+					</tr>                                                          
+				</table>
+			</fieldset>
+      <input type="submit" style="display:none;">
 		</form>
 		<style>
 		:host {
@@ -36,16 +65,29 @@
     }
 
     _submit(e) {
+      let oProps = {detail:{properties:{}}};
+      if(this.token){
+        oProps.detail.properties.token = this.token;
+      };
+      if(this.prompt){
+        oProps.detail.properties.prompt = this.prompt;
+      };
+      if(this.source){
+        oProps.detail.properties.source = this.source;
+      };
+      if(this.modelId){
+        oProps.detail.properties.modelId = this.modelId;
+      };
+      if(this.dimensionList){
+        oProps.detail.properties.dimensionList = this.dimensionList;
+      };
+      if(this.measureList){
+        oProps.detail.properties.measureList = this.measureList;
+      };
+
       e.preventDefault();
       this.dispatchEvent(
-        new CustomEvent("propertiesChanged", {
-          detail: {
-            properties: {
-              token: this.token,
-              prompt: this.prompt,
-            },
-          },
-        })
+        new CustomEvent("propertiesChanged", oProps)
       );
     }
 
@@ -61,6 +103,47 @@
     get prompt() {
       return this._shadowRoot.getElementById("prompt").value;
     }
+    set source(newSource){
+      if(newSource === "JSON"){
+        this._shadowRoot.getElementById("DataBinding").checked = false;
+        this._shadowRoot.getElementById("JSON").checked = true;
+        this._shadowRoot.getElementById("DataBindingSetting").style = "display:none;";
+      }else if(newSource === "DataBinding"){
+        this._shadowRoot.getElementById("DataBinding").checked = true;
+        this._shadowRoot.getElementById("JSON").checked = false;
+        this._shadowRoot.getElementById("DataBindingSetting").style = "display:block;";
+      }else{
+        this._shadowRoot.getElementById("DataBinding").checked = true;
+        this._shadowRoot.getElementById("JSON").checked = false;
+        this._shadowRoot.getElementById("DataBindingSetting").style = "display:block;";
+      }
+    }
+    get source(){
+      let DataBinding = this._shadowRoot.getElementById("DataBinding").checked;
+      if(DataBinding){
+        return "DataBinding";
+      }else{
+        return "JSON";
+      }
+    }
+    set modelId(newModel){
+      this._shadowRoot.getElementById("modelId").value = newModel;
+    }
+    get modelId(){
+      return this._shadowRoot.getElementById("modelId").value;
+    }       
+    set dimensionList(newDimStr){
+      this._shadowRoot.getElementById("dimensionList").value = newDimStr;
+    }
+    get dimensionList(){
+      return this._shadowRoot.getElementById("dimensionList").value;
+    }    
+    set measureList(newMeaStr){
+      this._shadowRoot.getElementById("measureList").value = newMeaStr;
+    }
+    get measureList(){
+      return this._shadowRoot.getElementById("measureList").value;
+    }      
   }
 
   customElements.define("com-sap-alfred-chatgpt-builder", SacChatGptBld);

@@ -2,13 +2,15 @@
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
           <style>
-          div{
+          #sacchatgptmain {
                 border: 1px solid #000000
             }
           </style>
           <div id = "sacchatgptmain">
-            <slot name="analyze_button"></slot>
             <p id = "sacchatgpt"></p>
+          </div>
+          <div id = "sacchatgptbtn">
+            <slot name="analyze_button"></slot>
           </div>
         `;
 
@@ -26,8 +28,14 @@
     }
 
     //properties
-    onCustomWidgetBeforeUpdate(oChangedProperties) {debugger;}
-    onCustomWidgetAfterUpdate(oChangedProperties) {debugger;}
+    onCustomWidgetBeforeUpdate(oChangedProperties) {
+      //debugger;
+    }
+
+      //Auto call setter & getter function from Bulider/Styling Panel
+    onCustomWidgetAfterUpdate(oChangedProperties) {
+      //debugger;
+    }
 
     //methods
     getPrompt() {
@@ -139,31 +147,50 @@
 
     //Datasource and DataBinding
     getDataSource() {
-      return this.customDataBinding.getDataSource();
+      if(this.dataBindings){
+        return this.dataBindings.getDataBinding("customDataBinding").getDataSource();
+      }
+      
     }
     setModel(modelId) {
-      return this.customDataBinding.setModel(modelId);
+      if(this.dataBindings){
+        this.dataBindings.getDataBinding("customDataBinding").setModel(modelId);
+      }
     }
     openSelectModelDialog() {
-      return this.customDataBinding.openSelectModelDialog();
+      if(this.dataBindings){
+        return this.dataBindings.getDataBinding("customDataBinding").openSelectModelDialog();
+      }   
     }
     getDimensions() {
-      return this.customDataBinding.getDimensions("dimensions");
+      if(this.dataBindings){
+        return this.dataBindings.getDataBinding("customDataBinding").getDimensions("dimensions");
+      }   
     }
     addDimension(dimensionId) {
-      return this.customDataBinding.addDimensionToFeed("dimensions", dimensionId);
+      if(this.dataBindings){
+        return this.dataBindings.getDataBinding("customDataBinding").addDimensionToFeed("dimensions", dimensionId);
+      }
     }
     removeDimension(dimensionId) {
-      return this.customDataBinding.removeDimension(dimensionId);
+      if(this.dataBindings){
+        return this.dataBindings.getDataBinding("customDataBinding").removeDimension(dimensionId);
+      }    
     }
     getMeasures() {
-      return this.customDataBinding.getMembers("measures");
+      if(this.dataBindings){
+        return this.dataBindings.getDataBinding("customDataBinding").getMembers("measures");
+      }
     }
     addMeasure(measureId) {
-      return this.customDataBinding.addMemberToFeed("measures", measureId);
+      if(this.dataBindings){
+        return this.dataBindings.getDataBinding("customDataBinding").addMemberToFeed("measures", measureId);
+      }  
     }
     removeMeasure(measureId) {
-      return this.customDataBinding.removeMember(measureId);
+      if(this.dataBindings){
+        return this.dataBindings.getDataBinding("customDataBinding").removeMember(measureId);
+      }    
     }
 
     //getter and setter
@@ -184,6 +211,41 @@
     }
     set dataset(newData) {
       this._props.dataset = newData;
+    }
+    get source(){
+      return this._props.source;
+    }
+    set source(newSource){
+      this._props.source = newSource;
+    }
+    get modelId(){
+      return this._props.modelId;
+    }
+    set modelId(newModel){
+      this._props.modelId = newModel;
+      this.setModel(newModel)
+    }
+    get dimensionList(){
+      return this._props.dimensionList;
+    }
+    set dimensionList(newDimStr){
+      this._props.dimensionList = newDimStr;
+      let dimArr = newDimStr.split(",");
+      for(let i = 0; i < dimArr.length; i++){
+        let dim = dimArr[i];
+        this.addDimension(dim);
+      }
+    }
+    get measureList(){
+      return this._props.measureList;
+    }
+    set measureList(newMeaStr){
+      this._props.measureList = newMeaStr;
+      let meaArr = newMeaStr.split(",");
+      for(let i = 0; i < meaArr.length; i++){
+        let mea = meaArr[i];
+        this.addMeasure(mea);
+      }
     }
   }
 
