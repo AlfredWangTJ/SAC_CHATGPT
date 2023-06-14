@@ -29,7 +29,7 @@
 				</table>
 			</fieldset>  
       <p></p>    
-			<fieldset id = "DataBindingSetting" style="display:none;">
+			<fieldset id = "DataBindingSetting">
 				<legend>DataBinding配置</legend>
 				<table>
 					<tr>
