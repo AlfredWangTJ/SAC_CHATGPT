@@ -116,7 +116,8 @@
       this.prompt = prompt;
     }
     analyze() {
-      console.log("analyze")
+      console.log("analyze");
+      console.log(this.dataBindings);
       console.log(this.dataBindings.getDataBinding("customDataBinding"));
       console.log(this.customDataBinding);
       console.log(this.getDataSource());
