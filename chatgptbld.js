@@ -70,10 +70,10 @@
         .addEventListener("submit", this._submit.bind(this));
       this._shadowRoot
         .getElementById("DataBinding")
-        .addEventListener("change", this._selectDataBinding());
+        .addEventListener("click", this._selectDataBinding.bind(this));
       this._shadowRoot
         .getElementById("JSON")
-        .addEventListener("change", this._selectJSON());
+        .addEventListener("click", this._selectJSON.bind(this));
       this._renderButton();
     }
 
@@ -122,8 +122,8 @@
 
       this._Button = new sap.m.Button({
           text: "确定",
-          press: (e) => {
-            this.dispatchEvent(
+          press: () => {
+            this._shadowRoot.getElementById("form").dispatchEvent(
               new Event("submit")
             );
           }

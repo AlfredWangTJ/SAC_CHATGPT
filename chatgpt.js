@@ -38,6 +38,7 @@
       //Auto call setter & getter function from Bulider/Styling Panel
     onCustomWidgetAfterUpdate(oChangedProperties) {
       console.log("onCustomWidgetAfterUpdate");
+      console.log(oChangedProperties);
       //debugger;
       if("modelId" in oChangedProperties){
         this.modelId = oChangedProperties["modelId"];
@@ -124,7 +125,7 @@
       console.log(this.customDataBinding);
       console.log(this.getDataSource());
       console.log(this.getDimensions());
-      console.log(getMeasures());
+      console.log(this.getMeasures());
       debugger;
       this.prepareData();
       this.preparePrompt();
