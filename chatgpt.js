@@ -44,10 +44,10 @@
         this.modelId = oChangedProperties["modelId"];
       }
       if("dimensionList" in oChangedProperties){
-        this.modelId = oChangedProperties["dimensionList"];
+        this.dimensionList = oChangedProperties["dimensionList"];
       }
       if("measureList" in oChangedProperties){
-        this.modelId = oChangedProperties["measureList"];
+        this.measureList = oChangedProperties["measureList"];
       }
     }
 
