@@ -123,6 +123,7 @@
       this._Button = new sap.m.Button({
           text: "确定",
           press: () => {
+            console.log(this);
             this._shadowRoot.getElementById("form").dispatchEvent(
               new Event("submit")
             );
