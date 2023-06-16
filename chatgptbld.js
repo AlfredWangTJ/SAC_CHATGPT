@@ -29,7 +29,7 @@
 				</table>
 			</fieldset>  
       <p></p>    
-			<fieldset id = "DataBindingSetting" style = "display:none">
+			<fieldset id = "DataBindingSetting">
 				<legend>DataBinding配置</legend>
 				<table>
 					<tr>
@@ -78,6 +78,7 @@
     }
 
     _submit(e) {
+      console.log("_submit");
       let oProps = {detail:{properties:{}}};
       if(this.token){
         oProps.detail.properties.token = this.token;
@@ -105,10 +106,12 @@
     }
 
     _selectDataBinding(){
+      console.log("_selectDataBinding");
       this.source = "DataBinding";
     }
 
     _selectJSON(){
+      console.log("_selectJSON");
       this.source = "JSON";
     }
 
@@ -119,8 +122,10 @@
 
       this._Button = new sap.m.Button({
           text: "确定",
-          press: () => {
-            this._shadowRoot.getElementById("form").submit();
+          press: (e) => {
+            this.dispatchEvent(
+              new Event("submit")
+            );
           }
       });
       this._Button.placeAt(buttonSlot);
@@ -139,6 +144,7 @@
       return this._shadowRoot.getElementById("prompt").value;
     }
     set source(newSource){
+      console.log("set source");
       if(newSource === "JSON"){
         this._shadowRoot.getElementById("DataBinding").checked = false;
         this._shadowRoot.getElementById("JSON").checked = true;

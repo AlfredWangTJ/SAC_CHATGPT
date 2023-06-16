@@ -6,7 +6,7 @@
                 border: 1px solid #000000
             }
           </style>
-          <div id = "sacchatgptmain" style = "width: 90% height: 100%">
+          <div id = "sacchatgptmain" style = "width: 90%; height: 100%">
             <p id = "sacchatgpt" style = "width: 100%"></p>
           </div>
           <div id = "sacchatgptbtn">
@@ -35,6 +35,15 @@
       //Auto call setter & getter function from Bulider/Styling Panel
     onCustomWidgetAfterUpdate(oChangedProperties) {
       //debugger;
+      if("modelId" in oChangedProperties){
+        this.modelId = oChangedProperties["modelId"];
+      }
+      if("dimensionList" in oChangedProperties){
+        this.modelId = oChangedProperties["dimensionList"];
+      }
+      if("measureList" in oChangedProperties){
+        this.modelId = oChangedProperties["measureList"];
+      }
     }
 
     //methods
@@ -105,9 +114,13 @@
       this.prompt = prompt;
     }
     analyze() {
+      console.log("analyze")
       console.log(this.dataBindings.getDataBinding("customDataBinding"));
       console.log(this.customDataBinding);
-      //debugger;
+      console.log(this.getDataSource());
+      console.log(this.getDimensions());
+      console.log(getMeasures());
+      debugger;
       this.prepareData();
       this.preparePrompt();
 
