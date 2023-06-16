@@ -6,11 +6,13 @@
                 border: 1px solid #000000
             }
           </style>
-          <div id = "sacchatgptmain" style = "width: 90%; height: 100%">
+          <div>
+          <div id = "sacchatgptmain" style = "width: 100%; height: 80%">
             <p id = "sacchatgpt" style = "width: 100%"></p>
           </div>
           <div id = "sacchatgptbtn">
             <slot name="analyze_button"></slot>
+          </div>
           </div>
         `;
 
