@@ -6,8 +6,8 @@
                 border: 1px solid #000000
             }
           </style>
-          <div id = "sacchatgptmain">
-            <p id = "sacchatgpt"></p>
+          <div id = "sacchatgptmain" style = "width: 90% height: 100%">
+            <p id = "sacchatgpt" style = "width: 100%"></p>
           </div>
           <div id = "sacchatgptbtn">
             <slot name="analyze_button"></slot>
@@ -34,7 +34,7 @@
 
       //Auto call setter & getter function from Bulider/Styling Panel
     onCustomWidgetAfterUpdate(oChangedProperties) {
-      debugger;
+      //debugger;
     }
 
     //methods
@@ -105,10 +105,9 @@
       this.prompt = prompt;
     }
     analyze() {
-      this.openSelectModelDialog();
       console.log(this.dataBindings.getDataBinding("customDataBinding"));
       console.log(this.customDataBinding);
-      debugger;
+      //debugger;
       this.prepareData();
       this.preparePrompt();
 

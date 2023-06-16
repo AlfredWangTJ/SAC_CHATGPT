@@ -29,7 +29,7 @@
 				</table>
 			</fieldset>  
       <p></p>    
-			<fieldset id = "DataBindingSetting">
+			<fieldset id = "DataBindingSetting" style = "display:none">
 				<legend>DataBinding配置</legend>
 				<table>
 					<tr>
@@ -68,6 +68,12 @@
       this._shadowRoot
         .getElementById("form")
         .addEventListener("submit", this._submit.bind(this));
+      this._shadowRoot
+        .getElementById("DataBinding")
+        .addEventListener("change", this._selectDataBinding());
+      this._shadowRoot
+        .getElementById("JSON")
+        .addEventListener("change", this._selectJSON());
       this._renderButton();
     }
 
@@ -98,6 +104,14 @@
       );
     }
 
+    _selectDataBinding(){
+      this.source = "DataBinding";
+    }
+
+    _selectJSON(){
+      this.source = "JSON";
+    }
+
     _renderButton() {
       let buttonSlot = document.createElement("div");
       buttonSlot.slot = "yes";
@@ -106,7 +120,7 @@
       this._Button = new sap.m.Button({
           text: "确定",
           press: () => {
-            this._submit();
+            this._shadowRoot.getElementById("form").submit();
           }
       });
       this._Button.placeAt(buttonSlot);
@@ -128,12 +142,15 @@
       if(newSource === "JSON"){
         this._shadowRoot.getElementById("DataBinding").checked = false;
         this._shadowRoot.getElementById("JSON").checked = true;
+        this._shadowRoot.getElementById("DataBindingSetting").style.display = 'none';
       }else if(newSource === "DataBinding"){
         this._shadowRoot.getElementById("DataBinding").checked = true;
         this._shadowRoot.getElementById("JSON").checked = false;
+        this._shadowRoot.getElementById("DataBindingSetting").style.display = 'block';
       }else{
         this._shadowRoot.getElementById("DataBinding").checked = true;
         this._shadowRoot.getElementById("JSON").checked = false;
+        this._shadowRoot.getElementById("DataBindingSetting").style.display = 'block';
       }
     }
     get source(){

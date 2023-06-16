@@ -27,11 +27,11 @@
   "properties": {
 		"width": { 
 			"type": "integer",
-			"default": 200
+			"default": 600
 		},
 		"height": {  
 			"type": "integer",
-			"default": 100
+			"default": 300
 		},
     "token": {
       "type": "string",
