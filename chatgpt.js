@@ -31,11 +31,13 @@
 
     //properties
     onCustomWidgetBeforeUpdate(oChangedProperties) {
+      console.log("onCustomWidgetBeforeUpdate");
       //debugger;
     }
 
       //Auto call setter & getter function from Bulider/Styling Panel
     onCustomWidgetAfterUpdate(oChangedProperties) {
+      console.log("onCustomWidgetAfterUpdate");
       //debugger;
       if("modelId" in oChangedProperties){
         this.modelId = oChangedProperties["modelId"];
@@ -238,9 +240,11 @@
       this._props.source = newSource;
     }
     get modelId(){
+      console.log("get modelId()");
       return this._props.modelId;
     }
     set modelId(newModel){
+      console.log("set modelId()");
       this._props.modelId = newModel;
       this.setModel(newModel)
     }
