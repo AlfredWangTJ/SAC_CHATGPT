@@ -119,6 +119,12 @@
       this.prompt = prompt;
     }
     analyze() {
+      if(this.getDimensions().length === 0){
+        this.dimensionList = this.dimensionList;
+      }
+      if(this.getMeasures().length === 0){
+        this.measureList = this.measureList;
+      }
       console.log("analyze");
       console.log(this.dataBindings);
       console.log(this.dataBindings.getDataBinding("customDataBinding"));
@@ -253,10 +259,12 @@
       return this._props.dimensionList;
     }
     set dimensionList(newDimStr){
+      console.log("set dimensionList");
       this._props.dimensionList = newDimStr;
       let dimArr = newDimStr.split(",");
       for(let i = 0; i < dimArr.length; i++){
         let dim = dimArr[i];
+        console.log(dim);
         this.addDimension(dim);
       }
     }
@@ -264,10 +272,12 @@
       return this._props.measureList;
     }
     set measureList(newMeaStr){
+      console.log("set measureList");
       this._props.measureList = newMeaStr;
       let meaArr = newMeaStr.split(",");
       for(let i = 0; i < meaArr.length; i++){
         let mea = meaArr[i];
+        console.log(mea);
         this.addMeasure(mea);
       }
     }
