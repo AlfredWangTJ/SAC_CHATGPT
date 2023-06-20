@@ -126,7 +126,7 @@
       console.log(this.getDataSource());
       console.log(this.getDimensions());
       console.log(this.getMeasures());
-      debugger;
+      //debugger;
       this.prepareData();
       this.preparePrompt();
 
