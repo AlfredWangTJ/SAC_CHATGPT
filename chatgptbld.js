@@ -79,6 +79,7 @@
 
     _submit(e) {
       console.log("_submit");
+      console.log(this);
       let oProps = {detail:{properties:{}}};
       if(this.token){
         oProps.detail.properties.token = this.token;
@@ -125,7 +126,7 @@
           press: () => {
             console.log(this);
             this._shadowRoot.getElementById("form").dispatchEvent(
-              new Event("submit")
+              new Event("submit").bind(this)
             );
           }
       });
