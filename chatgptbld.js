@@ -99,7 +99,8 @@
       if(this.measureList){
         oProps.detail.properties.measureList = this.measureList;
       };
-
+      
+      console.log(oProps);
       e.preventDefault();
       this.dispatchEvent(
         new CustomEvent("propertiesChanged", oProps)
@@ -126,7 +127,7 @@
           press: () => {
             console.log(this);
             this._shadowRoot.getElementById("form").dispatchEvent(
-              new Event("submit").bind(this)
+              new Event("submit")
             );
           }
       });
