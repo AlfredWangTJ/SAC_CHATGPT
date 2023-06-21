@@ -114,6 +114,21 @@
         }
       ]
     },
+    "getToken": {
+      "returnType": "string",
+      "description": "Get token Data",
+      "parameters": []
+    },
+    "setToken": {
+      "description": "Set token Data",
+      "parameters": [
+        {
+          "name": "newToken",
+          "type": "string",
+          "description": "Open AI Token"
+        }
+      ]
+    },
     "openSelectModelDialog": {
       "description": "Open model selector dialog",
       "parameters": []

@@ -141,6 +141,12 @@
     setJson(newVal) {
       this.jsonData = newVal;
     }
+    getToken() {
+      return this.token;
+    }
+    setToken(newToken) {
+      this.token = newToken;
+    }
     getDataSource() {
       if (this.dataBindings) {
         return this.dataBindings
