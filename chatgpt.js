@@ -220,6 +220,9 @@
         return this.dataBindings.getDataBinding("customDataBinding").removeMember(measureId);
       }    
     }
+    dbg(){
+      console.log(this.customDataBinding);
+    }
 
     //getter and setter
     get prompt() {

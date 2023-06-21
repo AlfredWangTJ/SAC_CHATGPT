@@ -164,6 +164,10 @@
       "description": "Send prompt and data to GPT for analyze.",
       "parameters": [],
       "returnType": "string"
+    },
+    "dbg": {
+      "description": "Print DataBinding Info in console",
+      "parameters": []
     }
   },
   "events": {
