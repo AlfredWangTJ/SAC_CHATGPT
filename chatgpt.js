@@ -54,8 +54,10 @@
       this._analyzeButton.placeAt(buttonSlot);
     }
     _prepareData() {
+      console.log("_prepareData");
       if (this.source === "DataBinding") {
-        let datasource = this.getDataSource();
+        let datasource = this.gptDataSource;
+        console.log(datasource);
         let data = datasource.data;
         let metadata = datasource.metadata;
 
