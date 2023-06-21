@@ -15,14 +15,7 @@
       "url": "https://alfredwangtj.github.io/SAC_CHATGPT/chatgpt.js",
       "integrity": "",
       "ignoreIntegrity": true
-    },
-    {
-        "kind": "builder",
-        "tag": "com-sap-alfred-chatgpt-builder",
-        "url": "https://alfredwangtj.github.io/SAC_CHATGPT/chatgptbld.js",
-        "integrity": "",
-        "ignoreIntegrity": true
-      }
+    }
   ],
   "properties": {
 		"width": { 
@@ -53,15 +46,10 @@
       "description": "DataBinding Model TECH ID",
       "default": ""        
     },
-    "dimensionList":{
+    "jsonData":{
       "type": "string",
-      "description": "Dimension List of DataBinding Model",
-      "default": ""           
-    },
-    "measureList":{
-      "type": "string",
-      "description": "Measure List of DataBinding Model",
-      "default": ""           
+      "description": "JSON Data for analysis",
+      "default": ""        
     }
   },
   "dataBindings": {
@@ -96,6 +84,11 @@
         }
       ]
     },
+    "getModel": {
+      "returnType": "string",
+      "description": "Get model of the widget",
+      "parameters": []
+    },
     "setModel": {
       "description": "Set model of the widget",
       "parameters": [
@@ -103,6 +96,21 @@
           "name": "modelId",
           "type": "string",
           "description": "Model ID"
+        }
+      ]
+    },
+    "getJson": {
+      "returnType": "string",
+      "description": "Get JSON Data",
+      "parameters": []
+    },
+    "setJson": {
+      "description": "Set JSON Data",
+      "parameters": [
+        {
+          "name": "newVal",
+          "type": "string",
+          "description": "JSON Data String"
         }
       ]
     },
