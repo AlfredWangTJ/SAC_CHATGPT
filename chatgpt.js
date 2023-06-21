@@ -93,12 +93,12 @@
     analyze() {
       this._prepareData();
 
-      let reqbody = {
-        model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: this.prompt }],
-      };
+      // let reqbody = {
+      //   model: "gpt-3.5-turbo",
+      //   messages: [{ role: "user", content: this.prompt }],
+      // };
 
-      console.log(JSON.stringify(reqbody));
+      // console.log(JSON.stringify(reqbody));
 
       /*
       jQuery.ajax({
