@@ -77,13 +77,11 @@
           let row = {};
           for (let j = 0; j < feedDimensions.length; j++) {
             row[dimensions[feedDimensions[j]].description] =
-              data(i)[feedDimensions[j]].label;
+              data[i][feedDimensions[j]].label;
           }
           for (let j = 0; j < feedMeasures.length; j++) {
             row[measures[feedMeasures[j]].label] =
-              data(i)[feedMeasures[j]].raw.toString() +
-              " " +
-              data(i)[feedMeasures[j]].unit;
+              data[i][feedMeasures[j]].formatted;
           }
           dataset.push(row);
         }
