@@ -81,26 +81,25 @@
           }
           for (let j = 0; j < feedMeasures.length; j++) {
             row[measures[feedMeasures[j]].label] =
-              data[i][feedMeasures[j]].formatted;
+              data[i][feedMeasures[j]].raw.toString();
           }
           dataset.push(row);
         }
-        this.jsonData = "{data: " + JSON.stringify(dataset) + "}";
+        this.jsonData = '{"data": ' + JSON.stringify(dataset) + '}';
       }
       this.prompt = this.prompt + this.jsonData;
-      console.log(this.prompt);
+      //console.log(this.prompt);
     }
     analyze() {
       this._prepareData();
 
-      // let reqbody = {
-      //   model: "gpt-3.5-turbo",
-      //   messages: [{ role: "user", content: this.prompt }],
-      // };
+      let reqbody = {
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: this.prompt }],
+      };
 
-      // console.log(JSON.stringify(reqbody));
-
-      /*
+      console.log(JSON.stringify(reqbody));
+  
       jQuery.ajax({
         type: "POST",
         contentType: "application/json",
@@ -122,11 +121,12 @@
             },
           });
           context.dispatchEvent(evtGptResp);
+          console.log(generatedText);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
           console.log(textStatus);
         },
-      });  */
+      });
     }
 
     getPrompt() {
