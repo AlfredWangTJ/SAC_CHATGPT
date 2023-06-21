@@ -53,7 +53,7 @@
     }
   },
   "dataBindings": {
-    "customDataBinding": {
+    "gptDataSource": {
       "feeds": [
         {
           "id": "dimensions",

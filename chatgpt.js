@@ -144,7 +144,7 @@
     getDataSource() {
       if (this.dataBindings) {
         return this.dataBindings
-          .getDataBinding("customDataBinding")
+          .getDataBinding("gptDataSource")
           .getDataSource();
       }
     }
@@ -154,7 +154,7 @@
     setModel(modelId) {
       if (this.dataBindings) {
         let result = this.dataBindings
-          .getDataBinding("customDataBinding")
+          .getDataBinding("gptDataSource")
           .setModel(modelId);
         if (result) {
           console.log("setModel: " + modelId + ",result: Success");
@@ -167,54 +167,54 @@
     openSelectModelDialog() {
       if (this.dataBindings) {
         return this.dataBindings
-          .getDataBinding("customDataBinding")
+          .getDataBinding("gptDataSource")
           .openSelectModelDialog();
       }
     }
     getDimensions() {
       if (this.dataBindings) {
         return this.dataBindings
-          .getDataBinding("customDataBinding")
+          .getDataBinding("gptDataSource")
           .getDimensions("dimensions");
       }
     }
     addDimension(dimensionId) {
       if (this.dataBindings) {
         return this.dataBindings
-          .getDataBinding("customDataBinding")
+          .getDataBinding("gptDataSource")
           .addDimensionToFeed("dimensions", dimensionId);
       }
     }
     removeDimension(dimensionId) {
       if (this.dataBindings) {
         return this.dataBindings
-          .getDataBinding("customDataBinding")
+          .getDataBinding("gptDataSource")
           .removeDimension(dimensionId);
       }
     }
     getMeasures() {
       if (this.dataBindings) {
         return this.dataBindings
-          .getDataBinding("customDataBinding")
+          .getDataBinding("gptDataSource")
           .getMembers("measures");
       }
     }
     addMeasure(measureId) {
       if (this.dataBindings) {
         return this.dataBindings
-          .getDataBinding("customDataBinding")
+          .getDataBinding("gptDataSource")
           .addMemberToFeed("measures", measureId);
       }
     }
     removeMeasure(measureId) {
       if (this.dataBindings) {
         return this.dataBindings
-          .getDataBinding("customDataBinding")
+          .getDataBinding("gptDataSource")
           .removeMember(measureId);
       }
     }
     dbg() {
-      console.log(this.customDataBinding);
+      console.log(this.gptDataSource);
     }
 
     //getter and setter
