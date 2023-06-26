@@ -7,7 +7,7 @@
   "id": "com.sap.alfred.chatgpt.0",
   "newInstancePrefix": "Chatgpt",
   "version": "0.0.1",
-  "icon": "",
+  "icon": "https://alfredwangtj.github.io/SAC_CHATGPT/gpticon.png",
   "webcomponents": [
     {
       "kind": "main",
