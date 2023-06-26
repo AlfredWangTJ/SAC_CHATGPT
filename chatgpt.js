@@ -23,7 +23,7 @@
       shadowRoot.appendChild(tmpl.content.cloneNode(true));
       this.addEventListener("evtGptResp", (event) => {
         this.shadowRoot.getElementById("sacchatgpt").textContent =
-          event.detail.properties.gptResp;
+          event.gptResp;
       });
       this._renderAnalyzeButton();
       this._props = {};
@@ -114,11 +114,7 @@
         success: function (data) {
           let generatedText = data.choices[0].message.content;
           var evtGptResp = new CustomEvent("evtGptResp", {
-            detail: {
-              properties: {
-                gptResp: generatedText,
-              },
-            },
+            gptResp: generatedText
           });
           context.dispatchEvent(evtGptResp);
           console.log(generatedText);
