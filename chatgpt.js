@@ -9,9 +9,9 @@ var _root;
           </style>
           <div>
           <div id = "sacchatgptmain" style = "width: 100%; height: 80%">
-            <p id = "sacchatgpt" style = "width: 100%"></p>
+          <textarea id = "sacchatgpt" style = "width: 100%; height: 100%" rows = "20" readonly></textarea>
           </div>
-          <div id = "sacchatgptbtn">
+          <div id = "sacchatgptbtn" style = "margin-bottom: 1px">
             <slot name="analyze_button"></slot>
           </div>
           </div>
