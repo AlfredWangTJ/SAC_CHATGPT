@@ -1,3 +1,4 @@
+var _root;
 (function () {
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
@@ -19,6 +20,7 @@
   class SacChatGpt extends HTMLElement {
     constructor() {
       super();
+      _root = this;
       let shadowRoot = this.attachShadow({ mode: "open" });
       shadowRoot.appendChild(tmpl.content.cloneNode(true));
       this.addEventListener("evtGptResp", this._showResp.bind(this));
@@ -115,10 +117,10 @@
           let generatedText = data.choices[0].message.content;
           let oResp = {detail: {}};
           oResp.detail["gptResp"] = generatedText;
-          context.gptResp = generatedText;
+          _root.gptResp = generatedText;
           console.log(oResp);
           let evtGptResp = new CustomEvent("evtGptResp", oResp);
-          context.dispatchEvent(evtGptResp);
+          _root.dispatchEvent(evtGptResp);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
           console.log(textStatus);
