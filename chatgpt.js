@@ -113,12 +113,11 @@
         data: JSON.stringify(reqbody),
         success: function (data) {
           let generatedText = data.choices[0].message.content;
-          console.log(generatedText);
-          var evtGptResp = new CustomEvent("evtGptResp", {
-            detail:{
-              gptResp: generatedText
-            } 
-          });
+          let oResp = {detail: {}};
+          oResp.detail["gptResp"] = generatedText;
+          context.gptResp = generatedText;
+          console.log(oResp);
+          let evtGptResp = new CustomEvent("evtGptResp", oResp);
           context.dispatchEvent(evtGptResp);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
