@@ -21,10 +21,7 @@
       super();
       let shadowRoot = this.attachShadow({ mode: "open" });
       shadowRoot.appendChild(tmpl.content.cloneNode(true));
-      this.addEventListener("evtGptResp", (event) => {
-        this.shadowRoot.getElementById("sacchatgpt").textContent =
-          event.detail.gptResp;
-      });
+      this.addEventListener("evtGptResp", this._showResp.bind(this));
       this._renderAnalyzeButton();
       this._props = {};
     }
@@ -40,6 +37,9 @@
     }
 
     //methods
+    _showResp(e){
+      this.shadowRoot.getElementById("sacchatgpt").textContent = e.detail.gptResp;
+    }
     _renderAnalyzeButton() {
       let buttonSlot = document.createElement("div");
       buttonSlot.slot = "analyze_button";
